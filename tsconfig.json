@@ -6,8 +6,9 @@
     "lib": ["dom", "esnext"],
     "module": "commonjs",
     "moduleResolution": "node",
-    "noEmit": true,
+    /* "noEmit": true, */
     "noImplicitAny": false,
+    "outDir": "dist",
     "preserveConstEnums": true,
     "resolveJsonModule": true,
     "rootDir": "./",
@@ -18,5 +19,5 @@
     "strictPropertyInitialization": true,
     "target": "es2017"
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/index.ts"]
 }
