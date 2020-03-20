@@ -1,0 +1,9 @@
+[ver:1,total:3120]
+api/metrics.ts:1985,1584669600:740,1584673200:1245,m
+.gtm/terminal.app:943,1584669600:558,1584673200:385,r
+node_modules/prom-client/index.d.ts:60,1584669600:30,1584673200:30,r
+gatsby-config.js:45,1584669600:45,m
+src/pages/index.js:35,1584669600:35,m
+src/components/image.js:20,1584669600:20,d
+node_modules/@now/node/dist/index.d.ts:20,1584673200:20,r
+node_modules/got/package.json:12,1584669600:12,r
