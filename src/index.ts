@@ -1,7 +1,6 @@
 import { register, Registry, Gauge } from "prom-client"
 import _ from "lodash"
-import got from "got"
-
+import axios from "axios"
 import express from "express"
 
 const app = express()
@@ -20,9 +19,13 @@ const keyNameMapping = {
 
 app.get("/metrics", async (__, res) => {
   register.clear()
-  let { country, ...stats } = await got
-    .get("https://corona.lmao.ninja/countries/usa")
-    .json()
+  const {
+    data: { country, ...stats },
+  } = await axios.get("https://corona.lmao.ninja/countries/usa")
+  console.log({ country, stats })
+  // let { country, ...stats } = await got
+  //   .get("https://corona.lmao.ninja/countries/usa")
+  //   .json()
 
   const registry = new Registry()
   for (const key in stats as { [key: string]: any }) {
@@ -41,7 +44,6 @@ app.get("/metrics", async (__, res) => {
   res.status(200).send(metricsString)
 })
 
-console.log("port", { port: process.env.PORT })
 app.listen(3000)
 
 export default app

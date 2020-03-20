@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "author": "Jesse Stuart <hi@jessestuart.com>",
   "dependencies": {
+    "axios": "0.19.2",
     "express": "4.17.1",
     "got": "10.6.0",
     "lodash": "4.17.15",
