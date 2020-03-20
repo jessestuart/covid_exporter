@@ -1,0 +1,8 @@
+[ver:1,total:420]
+.gtm/terminal.app:244,1584676800:244,r
+tsconfig.json:52,1584676800:52,m
+package.json:42,1584676800:42,m
+Dockerfile:30,1584676800:30,m
+src/index.ts:20,1584676800:20,r
+dist/src/index.js:20,1584676800:20,r
+.gitignore:12,1584676800:12,m
