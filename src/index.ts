@@ -2,8 +2,11 @@ import { register, Registry, Gauge } from "prom-client"
 import _ from "lodash"
 import axios from "axios"
 import express from "express"
+import morgan from "morgan"
 
 const app = express()
+
+app.use(morgan("common"))
 
 const keyNameMapping = {
   active: "active_total",

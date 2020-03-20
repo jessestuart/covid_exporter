@@ -4,10 +4,12 @@
   "version": "0.0.1",
   "author": "Jesse Stuart <hi@jessestuart.com>",
   "dependencies": {
+    "@types/morgan": "1.9.0",
     "axios": "0.19.2",
     "express": "4.17.1",
     "got": "10.6.0",
     "lodash": "4.17.15",
+    "morgan": "1.9.1",
     "prom-client": "12.0.0",
     "ts-node": "8.7.0",
     "typescript": "3.8.3"
