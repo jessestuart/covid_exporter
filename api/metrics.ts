@@ -16,6 +16,8 @@ const keyNameMapping = {
 }
 
 export default async (_req: NowRequest, res: NowResponse) => {
+  prom.register.clear()
+
   const stats = await got.get("https://corona.lmao.ninja/countries/usa").json()
   delete stats["country"]
 
@@ -23,14 +25,16 @@ export default async (_req: NowRequest, res: NowResponse) => {
   for (const key in stats as { [key: string]: any }) {
     const value = stats[key]
     const gauge: prom.Gauge<string> = new prom.Gauge({
-      name: `covid_${keyNameMapping[key]}`
+      name: `covid_${keyNameMapping[key]}`,
       help: key,
     })
     gauge.set(value)
 
     registry.registerMetric(gauge)
   }
+  const metricsString = registry.metrics()
+  registry.clear()
 
   res.setHeader("contentType", "text/plain")
-  res.status(200).send(registry.metrics())
+  res.status(200).send(metricsString)
 }
