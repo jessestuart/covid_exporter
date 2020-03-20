@@ -1,0 +1,6 @@
+[ver:1,total:1560]
+.gtm/terminal.app:1229,1584684000:1229,r
+manifests/external-svc.yaml:141,1584684000:141,m
+grafana-dep.yaml:120,1584684000:120,d
+grafana-ing.yaml:50,1584684000:50,d
+manifests/deployment.yaml:20,1584684000:20,m
