@@ -22,7 +22,6 @@ app.get("/metrics", async (__, res) => {
   const {
     data: { country, ...stats },
   } = await axios.get("https://corona.lmao.ninja/countries/usa")
-  console.log({ country, stats })
   // let { country, ...stats } = await got
   //   .get("https://corona.lmao.ninja/countries/usa")
   //   .json()
@@ -44,7 +43,7 @@ app.get("/metrics", async (__, res) => {
   res.status(200).send(metricsString)
 })
 
-app.listen(3000)
+app.listen(process.env.PORT || 3000)
 
 export default app
 

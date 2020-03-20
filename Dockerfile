@@ -11,5 +11,7 @@ RUN \
 COPY . /app/
 
 EXPOSE 3000
-ENTRYPOINT ["tini"]
-CMD ["yarn", "start"]
+ENTRYPOINT ["yarn"]
+CMD ["start"]
+# ENTRYPOINT ["tini"]
+# CMD ["yarn", "start"]
