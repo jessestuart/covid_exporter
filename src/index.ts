@@ -18,16 +18,15 @@ const keyNameMapping = {
 }
 
 app.get("/metrics", async (__, res) => {
-  register.clear()
   const {
     data: { country, ...stats },
   } = await axios.get("https://corona.lmao.ninja/countries/usa")
-  // let { country, ...stats } = await got
-  //   .get("https://corona.lmao.ninja/countries/usa")
-  //   .json()
 
   const registry = new Registry()
   for (const key in stats as { [key: string]: any }) {
+    const snakeKey = keyNameMapping[key]
+    register.removeSingleMetric(snakeKey)
+
     const value = _.get(stats, key)
     const gauge: Gauge<string> = new Gauge({
       name: `covid_${keyNameMapping[key]}`,
@@ -41,6 +40,7 @@ app.get("/metrics", async (__, res) => {
 
   res.setHeader("contentType", "text/plain")
   res.status(200).send(metricsString)
+  register.clear()
 })
 
 app.listen(process.env.PORT || 3000)
