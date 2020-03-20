@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    k8s-app: covid-exporter
+  name: covid-exporter
+  namespace: kube-prometheus
+spec:
+  selector:
+    matchLabels:
+      k8s-app: covid-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: covid-exporter
+    spec:
+      containers:
+        - image: jessestuart/covid_exporter
+          imagePullPolicy: Always
+          name: covid-exporter
+          ports:
+            - containerPort: 3000
+              protocol: TCP

@@ -1,0 +1,31 @@
+# ---
+# apiVersion: v1
+# kind: Endpoints
+# metadata:
+#   name: covid-exporter
+#   labels:
+#     k8s-app: covid-exporter
+# subsets:
+#   - addresses:
+#       - ip: "3.210.90.207"
+#     ports:
+#       - port: 80
+#         name: "metrics"
+apiVersion: v1
+kind: Service
+metadata:
+  name: covid-exporter
+  namespace: kube-prometheus
+  labels:
+    k8s-app: covid-exporter
+spec:
+  type: LoadBalancer
+  selector:
+    k8s-app: covid-exporter
+  # externalName: covid-now.jesses.now.sh
+  # clusterIP: ""
+  ports:
+    - name: metrics
+      port: 3000
+      protocol: TCP
+      targetPort: 3000
