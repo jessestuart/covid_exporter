@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    traefik.frontend.rule.type: PathPrefix
+  labels:
+    app: covid-grafana
+  name: covid-grafana
+  namespace: kube-prometheus
+spec:
+  rules:
+    - host: covid.jesses.io
+      http:
+        paths:
+          - backend:
+              serviceName: covid-grafana
+              servicePort: 3000
+            path: /
