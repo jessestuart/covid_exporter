@@ -18,6 +18,6 @@ echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USER --password-stdin
 # Push push push
 docker push ${IMAGE_ID}
 if [ "$CIRCLE_BRANCH" = 'master' ]; then
-  docker tag "${IMAGE_ID}" "${REGISTRY}/${IMAGE}:latest-${TAG}"
-  docker push "${REGISTRY}/${IMAGE}:latest-${TAG}"
+  docker tag "${IMAGE_ID}" "jessestuart/covid_exporter:latest"
+  docker push "jessestuart/covid_exporter:latest"
 fi
