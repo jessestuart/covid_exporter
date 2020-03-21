@@ -1,2 +1,12 @@
 [ver:1,total:240]
 .gtm/terminal.app:240,1584824400:240,r
+
+[ver:1,total:3480]
+.gtm/terminal.app:3015,1584759600:1130,1584763200:780,1584766800:180,1584774000:180,1584820800:60,1584824400:685,r
+api/metrics.ts:120,1584824400:120,m
+src/index.ts:120,1584759600:30,1584824400:90,r
+src/service/metrics.ts:100,1584759600:100,r
+package.json:70,1584824400:70,m
+node_modules/@now/node/dist/index.d.ts:30,1584824400:30,r
+.now/project.json:15,1584824400:15,r
+node_modules/@types/node/http.d.ts:10,1584824400:10,r
