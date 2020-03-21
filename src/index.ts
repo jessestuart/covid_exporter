@@ -15,6 +15,6 @@ app.get('/metrics', async (req: fastify.FastifyRequest, res) => {
 
 const port: number =
   process.env.PORT != null ? parseInt(process.env.PORT, 10) : 3000
-app.listen(port).then(() => {
+app.listen(port, '0.0.0.0').then(() => {
   console.log(`Running on port ${port}.`)
 })

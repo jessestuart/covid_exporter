@@ -27,7 +27,7 @@ export default class MetricsProvider {
       const gauge: Gauge<string> = new Gauge({
         name: `covid_${metric}`,
         help: key,
-        labelNames: ['country'],
+        labelNames: ['country', 'date', 'state'],
       })
       registry.registerMetric(gauge)
     }
@@ -39,17 +39,35 @@ export default class MetricsProvider {
 
   public static getMetrics = async () => {
     const registry = MetricsProvider.registry
-    const {
-      data: { country, ...stats },
-    } = await axios.get('https://corona.lmao.ninja/countries/usa')
+    const states = _.get(
+      await axios.get('https://corona.lmao.ninja/states'),
+      'data',
+    )
+    // console.log(states)
+    _.each(states, s => {
+      const { state, ...stats } = s
+      for (const key in stats as { [key: string]: number }) {
+        const metricKey = `covid_${keyNameMapping[key]}`
+        const value = _.get(stats, key)
+        const gauge = registry.getSingleMetric(metricKey) as Gauge<any>
+        gauge.set(
+          {
+            country: 'USA',
+            state,
+            date: new Date().toLocaleString('en-us').split(',')[0],
+          },
+          value,
+        )
+      }
+    })
+    // } = await axios.get('https://corona.lmao.ninja/countries/usa')
 
-    for (const key in stats as { [key: string]: any }) {
-      const metricKey = `covid_${keyNameMapping[key]}`
-
-      const value = _.get(stats, key)
-      const gauge = registry.getSingleMetric(metricKey) as Gauge<any>
-      gauge.set({ country }, value)
-    }
+    // for (const key in stats as { [key: string]: number }) {
+    //   const metricKey = `covid_${keyNameMapping[key]}`
+    //   const value = _.get(stats, key)
+    //   const gauge = registry.getSingleMetric(metricKey) as Gauge<any>
+    //   gauge.set({ country }, value)
+    // }
 
     return registry.metrics()
   }
