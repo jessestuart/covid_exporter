@@ -1,0 +1,85 @@
+version: 2.1
+
+# ====================
+# WORKFLOW DECLARATION
+# ====================
+workflows:
+  version: 2
+  main:
+    jobs:
+      - install_dependencies
+      - build_image
+      - lint:
+          requires:
+            - install_dependencies
+      - release:
+          requires:
+            - lint
+          filters:
+            branches:
+              only:
+                - master
+
+# ====================
+# ALIASES
+# ====================
+docker_image: &docker_image
+  docker:
+    - image: node:13
+
+restore_cache: &restore_cache
+  restore_cache:
+    keys:
+      - dependencies-v3-{{ checksum "yarn.lock" }}
+      - dependencies-v2
+
+save_cache: &save_cache
+  save_cache:
+    paths:
+      - node_modules/
+      - ~/.cache/yarn/
+    key: dependencies-v3-{{ checksum "yarn.lock" }}
+
+install_dependencies: &install_dependencies
+  run:
+    name: Install dependencies.
+    command: yarn --silent --no-progress --frozen-lockfile
+
+# ================
+# JOB DECLARATIONS
+# ================
+jobs:
+  install_dependencies:
+    <<: *docker_image
+    steps:
+      - checkout
+      - *restore_cache
+      - *install_dependencies
+      - *save_cache
+
+  lint:
+    <<: *docker_image
+    steps:
+      - checkout
+      - *restore_cache
+      - run:
+          name: Run linter.
+          command: yarn lint
+
+  release:
+    <<: *docker_image
+    steps:
+      - checkout
+      - *restore_cache
+      - run: yarn semantic-release
+
+  build_image:
+    docker:
+      - image: docker:stable-git
+    steps:
+      - checkout
+
+      - setup_remote_docker:
+          docker_layer_caching: true
+
+      - run: .circleci/build-image.sh
