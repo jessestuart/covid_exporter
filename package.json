@@ -1,7 +1,7 @@
 {
   "name": "@jesses/covid_exporter",
   "description": "",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "Jesse Stuart <hi@jessestuart.com>",
   "dependencies": {
     "axios": "0.19.2",
