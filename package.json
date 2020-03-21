@@ -33,7 +33,6 @@
     "url": "https://github.com/jessestuart/covid_exporter"
   },
   "scripts": {
-    "build": "yarn tsc",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "lint": "eslint --quiet --cache --ext .ts src/",
     "start": "ts-node src/index.ts"

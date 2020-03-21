@@ -9,7 +9,7 @@ RUN yarn --silent --no-progress --frozen-lockfile
 COPY tsconfig.json /app/
 COPY src/ /app/src/
 
-RUN yarn build
+RUN yarn tsc
 
 FROM node:13-alpine
 
