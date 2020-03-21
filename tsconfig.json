@@ -19,5 +19,5 @@
     "strictPropertyInitialization": true,
     "target": "es2017"
   },
-  "include": ["src/index.ts"]
+  "include": ["src", "api"]
 }
