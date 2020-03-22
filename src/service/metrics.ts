@@ -43,7 +43,7 @@ export default class MetricsProvider {
       await axios.get('https://corona.lmao.ninja/states'),
       'data',
     )
-    _.each(states, s => {
+    _.each(states, (s) => {
       const { state, ...stats } = s
       for (const key in stats as { [key: string]: number }) {
         const metricKey = `covid_${keyNameMapping[key]}`

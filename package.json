@@ -1,7 +1,7 @@
 {
   "name": "@jesses/covid_exporter",
-  "description": "",
-  "version": "1.0.0",
+  "description": "A Prometheus exporter providing realtime updates on the spread of COVID-19 in the US.",
+  "version": "1.1.0",
   "author": "Jesse Stuart <hi@jessestuart.com>",
   "dependencies": {
     "axios": "0.19.2",
@@ -20,12 +20,12 @@
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.10.0",
     "eslint-plugin-prettier": "3.1.2",
-    "prettier": "^1.19.1",
+    "prettier": "2.0.1",
     "semantic-release": "17.0.4",
-    "ts-node": "8.7.0",
+    "ts-node": "8.8.1",
     "typescript": "3.8.3"
   },
-  "keywords": [],
+  "keywords": ["coronavirus", "covid-19", "covid", "prometheus", "public-data"],
   "license": "MIT",
   "private": true,
   "repository": {
@@ -33,7 +33,6 @@
     "url": "https://github.com/jessestuart/covid_exporter"
   },
   "scripts": {
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "lint": "eslint --quiet --cache --ext .ts src/",
     "start": "ts-node src/index.ts"
   }
