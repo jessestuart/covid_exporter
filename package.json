@@ -1,7 +1,7 @@
 {
   "name": "@jesses/covid_exporter",
   "description": "A Prometheus exporter providing realtime updates on the spread of COVID-19 in the US.",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "author": "Jesse Stuart <hi@jessestuart.com>",
   "dependencies": {
     "axios": "0.19.2",
