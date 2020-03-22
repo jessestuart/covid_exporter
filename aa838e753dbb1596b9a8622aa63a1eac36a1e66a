@@ -1,1 +1,7 @@
 [ver:1,total:0]
+
+[ver:1,total:1440]
+src/service/metrics.ts:545,1584756000:545,m
+src/index.ts:545,1584756000:545,m
+.gtm/terminal.app:335,1584756000:335,r
+.prettierrc:15,1584756000:15,d

@@ -1,1 +1,8 @@
 [ver:1,total:0]
+
+[ver:1,total:2640]
+.gtm/terminal.app:2070,1584752400:1710,1584756000:360,r
+Dockerfile:360,1584752400:360,m
+src/index.ts:160,1584756000:160,r
+.circleci/config.yml:30,1584752400:30,r
+package.json:20,1584756000:20,m

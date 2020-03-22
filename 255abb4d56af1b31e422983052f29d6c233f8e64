@@ -1,1 +1,15 @@
 [ver:1,total:0]
+
+[ver:1,total:60]
+.gtm/terminal.app:60,1584748800:60,r
+
+[ver:1,total:3780]
+.gtm/terminal.app:2100,1584723600:180,1584727200:180,1584734400:180,1584738000:240,1584745200:30,1584748800:1290,r
+src/index.ts:1474,1584745200:30,1584748800:1444,m
+node_modules/prom-client/index.d.ts:55,1584748800:55,r
+package.json:42,1584748800:42,m
+.eslintrc.js:40,1584748800:40,m
+tsconfig.json:30,1584748800:30,m
+prettier.config.js:15,1584748800:15,m
+node_modules/@types/morgan/index.d.ts:12,1584748800:12,r
+node_modules/@types/node/net.d.ts:12,1584748800:12,r

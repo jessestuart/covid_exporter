@@ -1,1 +1,9 @@
 [ver:1,total:0]
+
+[ver:1,total:1320]
+src/index.ts:726,1584756000:726,m
+.gtm/terminal.app:397,1584756000:397,r
+node_modules/fastify/fastify.d.ts:87,1584756000:87,r
+package.json:45,1584756000:45,m
+node_modules/@types/morgan/index.d.ts:45,1584756000:45,d
+node_modules/@types/pino-http/index.d.ts:20,1584756000:20,r
