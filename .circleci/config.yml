@@ -12,13 +12,13 @@ workflows:
       - lint:
           requires:
             - install_dependencies
-      - release:
-          requires:
-            - lint
-          filters:
-            branches:
-              only:
-                - master
+      # - release:
+      #     requires:
+      #       - lint
+      #     filters:
+      #       branches:
+      #         only:
+      #           - master
 
 # ====================
 # ALIASES
@@ -66,12 +66,12 @@ jobs:
           name: Run linter.
           command: yarn lint
 
-  release:
-    <<: *docker_image
-    steps:
-      - checkout
-      - *restore_cache
-      - run: yarn semantic-release
+  # release:
+  #   <<: *docker_image
+  #   steps:
+  #     - checkout
+  #     - *restore_cache
+  #     - run: yarn semantic-release
 
   build_image:
     docker:
