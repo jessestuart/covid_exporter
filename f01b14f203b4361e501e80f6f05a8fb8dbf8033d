@@ -1,3 +1,9 @@
 [ver:1,total:300]
 .gtm/terminal.app:240,1584864000:240,r
 package.json:60,1584864000:60,m
+
+[ver:1,total:1560]
+.gtm/terminal.app:890,1584860400:150,1584864000:740,r
+package.json:390,1584860400:390,m
+README.md:250,1584864000:250,m
+.circleci/config.yml:30,1584864000:30,r
