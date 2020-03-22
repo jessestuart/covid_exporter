@@ -27,7 +27,7 @@ export default class MetricsProvider {
       const gauge: Gauge<string> = new Gauge({
         name: `covid_${metric}`,
         help: key,
-        labelNames: ['country', 'date', 'state'],
+        labelNames: ['country', 'state'],
       })
       registry.registerMetric(gauge)
     }
