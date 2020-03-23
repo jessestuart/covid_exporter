@@ -49,13 +49,15 @@ export default class MetricsProvider {
         const metricKey = `covid_${keyNameMapping[key]}`
         const value = _.get(stats, key)
         const gauge = registry.getSingleMetric(metricKey) as Gauge<any>
-        gauge.set(
-          {
-            country: 'USA',
-            state,
-          },
-          value,
-        )
+        if (value != null) {
+          gauge.set(
+            {
+              country: 'USA',
+              state,
+            },
+            value,
+          )
+        }
       }
     })
 

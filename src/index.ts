@@ -8,9 +8,13 @@ const logger = Log()
 
 app.get('/metrics', async (req: fastify.FastifyRequest, res) => {
   logger(req.req, res.res)
-  const metrics = await Metrics.getMetrics()
-
-  res.type('text/plain').send(metrics)
+  try {
+    const metrics = await Metrics.getMetrics()
+    res.type('text/plain').send(metrics)
+  } catch (e) {
+    console.error(e)
+    throw e
+  }
 })
 
 const port: number =
