@@ -3,14 +3,14 @@ import _ from 'lodash'
 import axios from 'axios'
 
 const keyNameMapping = {
-  active: 'active_total',
+  state:  'state',
   cases: 'cases_total',
-  casesPerOneMillion: 'cases_per_one_million',
-  critical: 'critical_total',
+  active: 'active_total',
+  testsPerOneMillion: 'tests_per_one_million_total',
   deaths: 'deaths_total',
-  recovered: 'recovered_total',
   todayCases: 'today_cases_total',
   todayDeaths: 'today_deaths_total',
+  tests: 'tests_total',
 }
 
 export default class MetricsProvider {
@@ -40,7 +40,7 @@ export default class MetricsProvider {
   public static getMetrics = async () => {
     const registry = MetricsProvider.registry
     const states = _.get(
-      await axios.get('https://corona.lmao.ninja/states'),
+      await axios.get('https://corona.lmao.ninja/v2/states'),
       'data',
     )
     _.each(states, (s) => {
