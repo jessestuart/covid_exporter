@@ -2,7 +2,7 @@ import { Gauge, Registry } from 'prom-client'
 import _ from 'lodash'
 import axios from 'axios'
 
-const keyNameMapping = {
+const worldometerKeyNameMapping = {
   state:  'state',
   cases: 'cases_total',
   active: 'active_total',
@@ -13,6 +13,13 @@ const keyNameMapping = {
   tests: 'tests_total',
 }
 
+const jhuKeyNameMapping = {
+  province: 'province',
+  country:  'country',
+  stats:  'stats'
+}
+
+const 
 export default class MetricsProvider {
   private static initRegistry = _.once(() => {
     if (MetricsProvider.registry != null) {
@@ -20,14 +27,14 @@ export default class MetricsProvider {
     }
 
     const registry = new Registry()
-    registry.setDefaultLabels({ country: 'USA' })
+    registry.setDefaultLabels({ country: 'unknown' })
 
     for (const key in keyNameMapping) {
       const metric = keyNameMapping[key]
       const gauge: Gauge<string> = new Gauge({
         name: `covid_${metric}`,
         help: key,
-        labelNames: ['country', 'state'],
+        labelNames: ['country', 'province', 'source'],
       })
       registry.registerMetric(gauge)
     }
@@ -46,21 +53,43 @@ export default class MetricsProvider {
     _.each(states, (s) => {
       const { state, ...stats } = s
       for (const key in stats as { [key: string]: number }) {
-        const metricKey = `covid_${keyNameMapping[key]}`
+        const metricKey = `covid_${worldometerKeyNameMapping[key]}`
         const value = _.get(stats, key)
         const gauge = registry.getSingleMetric(metricKey) as Gauge<any>
         if (value != null) {
           gauge.set(
             {
               country: 'USA',
-              state,
+              province: state,
+              source: 'worldometer'
             },
             value,
           )
         }
       }
     })
-
+    const blobs = _.get(
+      await axios.get('https://disease.sh/v2/jhucsse'),
+      'data',
+    )
+    _.each(blobs, (b) => {
+      const { blob, ...stats } = b
+      for (const key in stats as { [key: string]: number }) {
+        const metricKey = `covid_${jhuKeyNameMapping[key]}`
+        const value = _.get(stats, key)
+        const gauge = registry.getSingleMetric(metricKey) as Gauge<any>
+        if (value != null) {
+          gauge.set(
+            {
+              country: blob['country'],
+              province: blob['province'],
+              source: 'jhu',
+            },
+            value,
+          )
+        }
+      }
+    }
     return registry.metrics()
   }
 }
